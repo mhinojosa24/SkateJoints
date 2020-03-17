@@ -29,6 +29,7 @@ class MySpotsCollectionViewController: UICollectionViewController, UpdateSpotsDe
         collectionView.register(MySpotCollectionViewCell.self, forCellWithReuseIdentifier: MySpotCollectionViewCell.cellId)
         setUpNavigationUI()
         fetchAllSpots()
+        
     }
    
     
