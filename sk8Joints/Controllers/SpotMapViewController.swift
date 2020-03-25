@@ -16,12 +16,12 @@ import MapboxNavigation
 
 
 
-class SpotMapViewController: UIViewController, MGLMapViewDelegate {
+final class SpotMapViewController: UIViewController, MGLMapViewDelegate {
     
     lazy var mapView: NavigationMapView = self.createMap()
     lazy var cancelButton: Button = self.createCancelButton()
     lazy var collectionView: UICollectionView = self.createCollectionView()
-    lazy var mySpots = [SpotModal]()
+    lazy var mySpots = [Spot]()
     lazy var pins = [MGLPointAnnotation]()
     lazy var h = self.view.frame.height
     lazy var w = self.view.frame.width

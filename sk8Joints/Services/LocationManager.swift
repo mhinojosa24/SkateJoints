@@ -16,6 +16,10 @@ enum LocationError {
     case restricted
 }
 
+protocol LocationUpdateDelegate {
+    func locationDidUpdate(location: CLLocation, address: String)
+    func locationError(error: LocationError)
+}
 
 class LocationManager: NSObject, CLLocationManagerDelegate {
     
@@ -108,7 +112,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         let location = locations.last! as CLLocation
         
         // handles getting users address
-        CLGeocoder().reverseGeocodeLocation(manager.location!, completionHandler: {(placemarks, error)-> Void in
+        CLGeocoder().reverseGeocodeLocation(manager.location!, completionHandler: {(placemarks, error) -> Void in
              
             if (error != nil) {
                 print("Reverse geocoder failed with error" + (error?.localizedDescription)!)

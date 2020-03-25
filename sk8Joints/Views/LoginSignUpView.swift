@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 
-class LoginSignupView: UIView {
+final class LoginSignupView: UIView {
     
     lazy var containerView: View = self.createContainerView()
     lazy var logoImage: ImageView = self.createImage()

@@ -19,22 +19,24 @@ extension UIViewController {
         blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView?.frame = view.bounds
         blurEffectView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.view.addSubview(blurEffectView!)
-        aView = UIView(frame: self.view.frame)
-//        aView?.backgroundColor = UIColor.init(red: 29, green: 68, blue: 101, alpha: 0.5)
-//        aView?.alpha = 0.5
-        let activityIndicator = UIActivityIndicatorView(style: .large)
-        activityIndicator.color = .white
-        activityIndicator.center = aView!.center
-        activityIndicator.startAnimating()
-        aView?.addSubview(activityIndicator)
-        self.view.addSubview(aView!)
+        DispatchQueue.main.async {
+            self.view.addSubview(blurEffectView!)
+            aView = UIView(frame: self.view.frame)
+            let activityIndicator = UIActivityIndicatorView(style: .large)
+            activityIndicator.color = .white
+            activityIndicator.center = aView!.center
+            activityIndicator.startAnimating()
+            aView?.addSubview(activityIndicator)
+            self.view.addSubview(aView!)
+        }
     }
     
     func removeSpinner() {
-        blurEffectView?.removeFromSuperview()
-        aView?.removeFromSuperview()
-        blurEffectView = nil
-        aView = nil
+        DispatchQueue.main.async {
+            blurEffectView?.removeFromSuperview()
+            aView?.removeFromSuperview()
+            blurEffectView = nil
+            aView = nil
+        }
     }
 }

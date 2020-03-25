@@ -15,36 +15,37 @@ import Mapbox
 import MapboxGeocoder
 import MapboxCoreNavigation
 
+protocol UpdateSpotsDelegate {
+    func shouldUpdateSpots(isEnableUpdate: Bool)
+}
 
-class AddMySpotViewController: UIViewController, LocationUpdateDelegate {
+final class AddSpotViewController: UIViewController, LocationUpdateDelegate {
     
     // NOTE: Explicitly being created when constraints are added
-    lazy var imageTitleLabel: Label = self.createImageTitleLabel()
-    lazy var spotImageContainer: View = self.createSpotImageContainer()
-    lazy var spotImage: ImageView = self.createSpotImage()
-    lazy var spotNickNameLabel: Label = self.createSpotNickNameLabel()
-    lazy var nickNameTextfield: TextField = self.createNickNameTextfield()
-    lazy var textFieldBottomLine: View = self.createTextFieldBottomLine()
-    lazy var verifySpotTitleLabel: Label = self.createVerifySpotTitleLabel()
-    lazy var secruityImage: ImageView = self.createSecruityImage()
-    lazy var theifImage: ImageView = self.createTheifImage()
-    lazy var constructionImage = self.createConstructionImage()
-    lazy var positiveHandImage: ImageView = self.createPositiveHandImage()
-    lazy var stackView: Stack = self.createStackView()
-    var locationManager: LocationManager!
-    var delegate: UpdateSpotsDelegate!
-    var spotRef: DatabaseReference!
+    lazy var addSpotView: AddSpotView = {
+        let view = AddSpotView()
+        return view
+    }()
+    private var viewModel: AddMySpotViewModel!
+    private var locationManager: LocationManager!
+    private var delegate: UpdateSpotsDelegate!
     var imageToSave: UIImage!
     var verifySpotTag: Int? = 0
     var address: String?
     var spotLat: Double?
     var spotLong: Double?
     
+    
+    init(viewModel: AddMySpotViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = #colorLiteral(red: 0.1019607843, green: 0.1803921569, blue: 0.2745098039, alpha: 1)
         setUpNavigationUI()
-        layout()
         locationManager = LocationManager()
         locationManager.delegate = self
         locationManager.checkLocationServices()
@@ -69,46 +70,44 @@ class AddMySpotViewController: UIViewController, LocationUpdateDelegate {
             }
             alert.addAction(cancel)
             alert.addAction(openAction)
-            self.present(alert, animated: true, completion: nil)
+            present(alert, animated: true, completion: nil)
         }
     }
     
-    func saveNewSpot() {
-        self.navigationItem.rightBarButtonItem?.isEnabled = false
+    private func saveNewSpot() {
         let spotIdentifier = Constant.databaseRef().childByAutoId().key
-         self.showSpinner()
-        if let image = imageToSave {
-            SpotServices.saveNewImage(image) { (url) in
-                guard
-                    let spotName = self.nickNameTextfield.text,
-                    let spotImageName = url?.absoluteString,
-                    let spotTag = self.verifySpotTag,
-                    let lat = self.spotLat,
-                    let long = self.spotLong,
-                    let address = self.address
-                    else { return }
-
-                if spotName.count == 0 || spotImageName.count == 0 || spotTag == 0 {
-                    self.showAlertAdvisor()
-                    self.removeSpinner()
-                    self.navigationItem.rightBarButtonItem?.isEnabled = true
-                } else {
-                   
-                    let newSpot = SpotModal(id: spotIdentifier, spotName: spotName, spotImage: spotImageName, address: address, spotLat: lat, spotLong: long, verifySpot: spotTag)
-                    SpotServices.saveNewSpot(newSpot) {
-                        DispatchQueue.main.async {
-                            self.removeSpinner()
-                            self.delegate.shouldUpdateSpots(isEnableUpdate: true)
-                            self.locationManager.stopUpdatingLocation()
-                            self.dismiss(animated: true, completion: nil)
-                            
-                        }
-                    }
-                }
-            }
+        guard let image = imageToSave else {
+            showAlertAdvisor()
+            navigationItem.rightBarButtonItem?.isEnabled = true
+            return
+        }
+        
+        guard
+            let spotName = addSpotView.nickNameTextfield.text,
+            let spotImageName = viewModel.getImageURL(image: image)?.absoluteString,
+            let spotTag = self.verifySpotTag,
+            let lat = self.spotLat,
+            let long = self.spotLong,
+            let address = self.address
+            else { return }
+        let isValid = validateSpot(spotName, spotImageName, spotTag)
+        
+        if isValid {
+            let newSpot = Spot(id: spotIdentifier, spotName: spotName, spotImage: spotImageName, address: address, spotLat: lat, spotLong: long, verifySpot: spotTag)
+            viewModel.saveSpot(spot: newSpot)
+            delegate.shouldUpdateSpots(isEnableUpdate: true)
+            locationManager.stopUpdatingLocation()
+            dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    private func validateSpot(_ spotName: String, _ imageName: String, _ tag: Int) -> Bool {
+        if spotName.count == 0 || imageName.count == 0 || tag == 0 {
+            showAlertAdvisor()
+            navigationItem.rightBarButtonItem?.isEnabled = true
+            return false
         } else {
-            self.showAlertAdvisor()
-            self.navigationItem.rightBarButtonItem?.isEnabled = true
+            return true
         }
     }
     
@@ -118,7 +117,7 @@ class AddMySpotViewController: UIViewController, LocationUpdateDelegate {
     }
     
     private func setUpNavigationUI() {
-        title = "Add Spot"
+        title = viewModel.title
         let leftButton =  Button()
         leftButton.setTitle("Cancel", for: .normal)
         leftButton.setTitleColor(#colorLiteral(red: 0.9294117647, green: 0.7058823529, blue: 0.1647058824, alpha: 1), for: .normal)
@@ -138,32 +137,33 @@ class AddMySpotViewController: UIViewController, LocationUpdateDelegate {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 19)!]
     }
     
-    @objc func didPressedVerifyImage(sender: UITapGestureRecognizer) {
-        self.verifySpotTag = sender.view!.tag
+    private func configureAddSpotView() {
+        
     }
     
+    @objc func didPressedVerifyImage(sender: UITapGestureRecognizer) {
+        verifySpotTag = sender.view!.tag
+    }
     
     @objc func didPressedAddImage() {
         ImagePickerManager().pickImage(self) { (image) in
             if let image = image {
-                self.spotImage.isHidden = true
+                self.addSpotView.spotImage.isHidden = true
                 self.imageToSave = image
-                self.spotImageContainer.backgroundColor = UIColor(patternImage: image)
+                self.addSpotView.spotImageContainer.backgroundColor = UIColor(patternImage: image)
             } else {
-                self.spotImage.isHidden = false
-                self.spotImageContainer.backgroundColor = .darkGray
+                self.addSpotView.spotImage.isHidden = false
+                self.addSpotView.spotImageContainer.backgroundColor = .darkGray
             }
         }
     }
-    
     
     @objc private func didPressCancelButton() {
         self.dismiss(animated: true, completion: nil)
     }
     
-    
     @objc private func didPressSaveButton() {
-        self.saveNewSpot()
+        saveNewSpot()
     }
 }
 

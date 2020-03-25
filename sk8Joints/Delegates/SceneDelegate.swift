@@ -26,8 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        let layout = SnappingLayout()
-        let mySpotVC = MySpotsCollectionViewController(collectionViewLayout: layout)
+        let mySpotVC = MySpotsCollectionViewController(viewModel: MySpotViewModel())
         let nav = UINavigationController(rootViewController: mySpotVC)
         window?.rootViewController = nav
         window?.makeKeyAndVisible()

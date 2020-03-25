@@ -16,7 +16,7 @@ import UIKit
     NOTE: This extension will take care of creating views
  
 */
-extension AddMySpotViewController {
+extension AddSpotView {
     func createImageTitleLabel() -> Label {
         let label = Label.newLabel(title: "Add an image to this spot", textColor: .white, textSize: 19)
         let labelHeight = label.optimalHeight
@@ -116,7 +116,7 @@ extension AddMySpotViewController {
 /*
   NOTE: This extension will take of layingout subViews
 */
-extension AddMySpotViewController {
+extension AddSpotView {
     
     // NOTE: This is going to be the main caller function for layingout all subviews
     func layout() {

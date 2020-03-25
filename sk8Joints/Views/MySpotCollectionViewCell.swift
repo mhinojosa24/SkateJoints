@@ -11,7 +11,7 @@ import UIKit
 import Firebase
 
 
-class MySpotCollectionViewCell: UICollectionViewCell {
+final class MySpotCollectionViewCell: UICollectionViewCell {
     
     static let cellId = "mySpotCellId"
     lazy var spotImageView: UIImageView = self.createSpotImageView()
@@ -23,7 +23,6 @@ class MySpotCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         setUpCellUI()
         layout()
         navigationLogo.isUserInteractionEnabled = true

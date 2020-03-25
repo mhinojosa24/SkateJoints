@@ -9,7 +9,7 @@
 import Foundation
 
 
-struct SpotModal: Codable {
+struct Spot: Codable {
     var id: String?
     var spotName: String?
     var spotImage: String?
