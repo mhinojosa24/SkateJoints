@@ -10,13 +10,14 @@ A simple iOS location-based app that uses CoreLocation and MapBoxAPI to empower 
 
 ## Project Built With
 
-* [Swift 4.2](https://developer.apple.com/swift/)
+* [Swift 5](https://developer.apple.com/swift/)
 * [Xcode 11.3](https://developer.apple.com/xcode/)
 * [CocoaPods](https://guides.cocoapods.org/terminal/commands.html)
 * [FireBase](https://console.firebase.google.com/u/1/)
 * [MapBox](https://docs.mapbox.com/ios/maps/overview/)
 * [Git](https://git-scm.com/)
 * [CoreLocation](https://developer.apple.com/documentation/corelocation)
+* [KingFisher](https://github.com/onevcat/Kingfisher)
 
 
 ## Acknowledgments
