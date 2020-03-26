@@ -1,4 +1,4 @@
-<img src= "screenshots/SkateJointSpot.png" width = 150 height = 150></img>
+<img src= "Screenshots/SkateJointSpot.png" width = 150 height = 150></img>
 
 # SkateJoints
 
