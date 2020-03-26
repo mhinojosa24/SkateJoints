@@ -11,7 +11,7 @@ A simple iOS location-based app that uses CoreLocation and MapBoxAPI to empower 
 ## Project Built With
 
 * [Swift 4.2](https://developer.apple.com/swift/)
-* [Xcode 10.1](https://developer.apple.com/xcode/)
+* [Xcode 11.3](https://developer.apple.com/xcode/)
 * [CocoaPods](https://guides.cocoapods.org/terminal/commands.html)
 * [FireBase](https://console.firebase.google.com/u/1/)
 * [MapBox](https://docs.mapbox.com/ios/maps/overview/)
