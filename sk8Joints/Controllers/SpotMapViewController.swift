@@ -16,20 +16,17 @@ import MapboxNavigation
 
 
 
-class SpotMapViewController: UIViewController, MGLMapViewDelegate {
+final class SpotMapViewController: UIViewController, MGLMapViewDelegate {
     
     lazy var mapView: NavigationMapView = self.createMap()
     lazy var cancelButton: Button = self.createCancelButton()
     lazy var collectionView: UICollectionView = self.createCollectionView()
-    lazy var mySpots = [SpotModal]()
-    lazy var pins = [MGLPointAnnotation]()
+    lazy var mySpots = [Spot]()
     lazy var h = self.view.frame.height
     lazy var w = self.view.frame.width
     var directionsRoute: Route!
     let regionRadius: CLLocationDistance = 10000
-    var currentLocation: CLLocation!
-    var directionsArray: [MKDirections] = []
-    var numberOfItems: Int = 1000000
+    var numberOfItems: Int = 10000
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,21 +48,27 @@ class SpotMapViewController: UIViewController, MGLMapViewDelegate {
         mapView.setUserTrackingMode(.follow, animated: true, completionHandler: nil)
     }
     
+    // This method resets the map annotations and overlays
+    private func resetMapViewPins() {
+        if let annotations = mapView.annotations {
+           if annotations.count > 0 {
+               annotations.forEach {
+                   mapView.removeAnnotation($0)
+                   mapView.removeOverlays(mapView.overlays)
+               }
+           }
+       }
+    }
+    
     // TODO: clean code
     func calculateRoute(from originCoor: CLLocationCoordinate2D, to destinationCoor: CLLocationCoordinate2D, completion: @escaping (Route?, Error?) -> Void) {
-//        guard let annotations = mapView.annotations else { return print("Annotation Error") }
-//        if annotations.count != 0 { annotations.forEach { mapView.removeAnnotation($0) }}
-//        if pins.count > 0 {
-//            mapView.removeAnnotations(mapView.annotations!)
-//        }
-        mapView.removeOverlays(mapView.overlays)
         let origin = Waypoint(coordinate: originCoor, coordinateAccuracy: -1, name: "Start")
         let destination = Waypoint(coordinate: destinationCoor, coordinateAccuracy: -1, name: "Finish")
         let annotation = MGLPointAnnotation()
         annotation.coordinate = destinationCoor
         annotation.title = "Start Navigation"
+        resetMapViewPins()
         mapView.addAnnotation(annotation)
-        pins.append(annotation)
         
         let options = NavigationRouteOptions(waypoints: [origin, destination], profileIdentifier: .automobile)
         
@@ -82,7 +85,7 @@ class SpotMapViewController: UIViewController, MGLMapViewDelegate {
         }
     }
     
-    /// This function draws a route
+    // This function draws a route
     func drawRoute(route: Route) {
         guard route.coordinateCount > 0 else { return }
         var routeCoordinates = route.coordinates!
@@ -107,9 +110,9 @@ class SpotMapViewController: UIViewController, MGLMapViewDelegate {
     }
     
     @objc func didPressedNavigateButton(_ sender: Button) {
-
         mapView.setUserTrackingMode(.none, animated: true, completionHandler: nil)
-        let destinationCoor = CLLocationCoordinate2D(latitude: mySpots[sender.tag % mySpots.count].spotLat!, longitude: mySpots[sender.tag % mySpots.count].spotLong!)
+        let indexPath = (sender.tag % mySpots.count)
+        let destinationCoor = CLLocationCoordinate2D(latitude: mySpots[indexPath].spotLat!, longitude: mySpots[indexPath].spotLong!)
         
         calculateRoute(from: mapView.userLocation!.coordinate, to: destinationCoor) { (route, error) in
             
@@ -117,8 +120,6 @@ class SpotMapViewController: UIViewController, MGLMapViewDelegate {
                 print("Error getting route")
             }
         }
-        
-        
     }
     
     // Implement the delegate method that allows annotations to show callouts when tapped

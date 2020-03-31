@@ -16,7 +16,11 @@ import MapboxGeocoder
 import MapboxCoreNavigation
 
 
-class AddMySpotViewController: UIViewController, LocationUpdateDelegate {
+protocol UpdateSpotsDelegate {
+    func shouldUpdateSpots(isEnableUpdate: Bool)
+}
+
+class AddSpotViewController: UIViewController, LocationUpdateDelegate {
     
     // NOTE: Explicitly being created when constraints are added
     lazy var imageTitleLabel: Label = self.createImageTitleLabel()
@@ -33,16 +37,23 @@ class AddMySpotViewController: UIViewController, LocationUpdateDelegate {
     lazy var stackView: Stack = self.createStackView()
     var locationManager: LocationManager!
     var delegate: UpdateSpotsDelegate!
-    var spotRef: DatabaseReference!
     var imageToSave: UIImage!
     var verifySpotTag: Int? = 0
     var address: String?
     var spotLat: Double?
     var spotLong: Double?
+    private var viewModel: AddMySpotViewModel!
+    
+    init(viewModel: AddMySpotViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = #colorLiteral(red: 0.1019607843, green: 0.1803921569, blue: 0.2745098039, alpha: 1)
+        view.backgroundColor = .white
         setUpNavigationUI()
         layout()
         locationManager = LocationManager()
@@ -69,46 +80,44 @@ class AddMySpotViewController: UIViewController, LocationUpdateDelegate {
             }
             alert.addAction(cancel)
             alert.addAction(openAction)
-            self.present(alert, animated: true, completion: nil)
+            present(alert, animated: true, completion: nil)
         }
     }
     
-    func saveNewSpot() {
-        self.navigationItem.rightBarButtonItem?.isEnabled = false
+    private func saveNewSpot() {
         let spotIdentifier = Constant.databaseRef().childByAutoId().key
-         self.showSpinner()
-        if let image = imageToSave {
-            SpotServices.saveNewImage(image) { (url) in
-                guard
-                    let spotName = self.nickNameTextfield.text,
-                    let spotImageName = url?.absoluteString,
-                    let spotTag = self.verifySpotTag,
-                    let lat = self.spotLat,
-                    let long = self.spotLong,
-                    let address = self.address
-                    else { return }
-
-                if spotName.count == 0 || spotImageName.count == 0 || spotTag == 0 {
-                    self.showAlertAdvisor()
-                    self.removeSpinner()
-                    self.navigationItem.rightBarButtonItem?.isEnabled = true
-                } else {
-                   
-                    let newSpot = SpotModal(id: spotIdentifier, spotName: spotName, spotImage: spotImageName, address: address, spotLat: lat, spotLong: long, verifySpot: spotTag)
-                    SpotServices.saveNewSpot(newSpot) {
-                        DispatchQueue.main.async {
-                            self.removeSpinner()
-                            self.delegate.shouldUpdateSpots(isEnableUpdate: true)
-                            self.locationManager.stopUpdatingLocation()
-                            self.dismiss(animated: true, completion: nil)
-                            
-                        }
-                    }
-                }
-            }
+        guard let image = imageToSave else {
+            showAlertAdvisor()
+            navigationItem.rightBarButtonItem?.isEnabled = true
+            return
+        }
+        
+        guard
+            let spotName = self.nickNameTextfield.text,
+            let spotImageName = viewModel.getImageURL(image: image)?.absoluteString,
+            let spotTag = self.verifySpotTag,
+            let lat = self.spotLat,
+            let long = self.spotLong,
+            let address = self.address
+            else { return }
+        let isValid = validateSpot(spotName, spotImageName, spotTag)
+        
+        if isValid {
+            let newSpot = Spot(id: spotIdentifier, spotName: spotName, spotImage: spotImageName, address: address, spotLat: lat, spotLong: long, verifySpot: spotTag)
+            viewModel.saveSpot(spot: newSpot)
+            delegate.shouldUpdateSpots(isEnableUpdate: true)
+            locationManager.stopUpdatingLocation()
+            dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    private func validateSpot(_ spotName: String, _ imageName: String, _ tag: Int) -> Bool {
+        if spotName.count == 0 || imageName.count == 0 || tag == 0 {
+            showAlertAdvisor()
+            navigationItem.rightBarButtonItem?.isEnabled = true
+            return false
         } else {
-            self.showAlertAdvisor()
-            self.navigationItem.rightBarButtonItem?.isEnabled = true
+            return true
         }
     }
     
@@ -118,7 +127,7 @@ class AddMySpotViewController: UIViewController, LocationUpdateDelegate {
     }
     
     private func setUpNavigationUI() {
-        title = "Add Spot"
+        title = viewModel.title
         let leftButton =  Button()
         leftButton.setTitle("Cancel", for: .normal)
         leftButton.setTitleColor(#colorLiteral(red: 0.9294117647, green: 0.7058823529, blue: 0.1647058824, alpha: 1), for: .normal)
@@ -139,9 +148,8 @@ class AddMySpotViewController: UIViewController, LocationUpdateDelegate {
     }
     
     @objc func didPressedVerifyImage(sender: UITapGestureRecognizer) {
-        self.verifySpotTag = sender.view!.tag
+        verifySpotTag = sender.view!.tag
     }
-    
     
     @objc func didPressedAddImage() {
         ImagePickerManager().pickImage(self) { (image) in
@@ -156,14 +164,12 @@ class AddMySpotViewController: UIViewController, LocationUpdateDelegate {
         }
     }
     
-    
     @objc private func didPressCancelButton() {
         self.dismiss(animated: true, completion: nil)
     }
     
-    
     @objc private func didPressSaveButton() {
-        self.saveNewSpot()
+        saveNewSpot()
     }
 }
 

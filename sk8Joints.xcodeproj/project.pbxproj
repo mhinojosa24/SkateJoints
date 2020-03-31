@@ -8,13 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		7400114F23FF62F400A21D42 /* SpotCellVerification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7400114E23FF62F400A21D42 /* SpotCellVerification.swift */; };
+		740FE1A12420EC9200F4708C /* MySpotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740FE1A02420EC9200F4708C /* MySpotViewModel.swift */; };
+		740FE1A32420F1AB00F4708C /* AddMySpotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740FE1A22420F1AB00F4708C /* AddMySpotViewModel.swift */; };
 		7412B898235C321800718727 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7412B897235C321800718727 /* AppDelegate.swift */; };
 		7412B89A235C321800718727 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7412B899235C321800718727 /* SceneDelegate.swift */; };
 		7412B8A1235C321C00718727 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7412B8A0235C321C00718727 /* Assets.xcassets */; };
 		7412B8A4235C321C00718727 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7412B8A2235C321C00718727 /* LaunchScreen.storyboard */; };
 		7412B8AF235C321C00718727 /* sk8JointsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7412B8AE235C321C00718727 /* sk8JointsTests.swift */; };
 		7412B8BA235C321C00718727 /* sk8JointsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7412B8B9235C321C00718727 /* sk8JointsUITests.swift */; };
-		7412B8C8235C338500718727 /* AddMySpotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7412B8C7235C338500718727 /* AddMySpotViewController.swift */; };
+		7412B8C8235C338500718727 /* AddSpotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7412B8C7235C338500718727 /* AddSpotViewController.swift */; };
 		7412B8CA235C33AF00718727 /* MySpotsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7412B8C9235C33AF00718727 /* MySpotsCollectionViewController.swift */; };
 		7412B8CC235C33D600718727 /* SpotMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7412B8CB235C33D600718727 /* SpotMapViewController.swift */; };
 		7412B8D0235C34B500718727 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7412B8CF235C34B500718727 /* View.swift */; };
@@ -22,25 +24,25 @@
 		7412B8D4235C358400718727 /* UIImageExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7412B8D3235C358400718727 /* UIImageExt.swift */; };
 		7412B8D6235C35A900718727 /* Textfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7412B8D5235C35A900718727 /* Textfield.swift */; };
 		7412B8D8235C35CD00718727 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7412B8D7235C35CD00718727 /* Stack.swift */; };
-		7412B8DA235C35FE00718727 /* MySpotsCollectionViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7412B8D9235C35FE00718727 /* MySpotsCollectionViewControllerExt.swift */; };
 		7412B8DC235C362A00718727 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7412B8DB235C362A00718727 /* Label.swift */; };
 		7412B8DE235C364800718727 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7412B8DD235C364800718727 /* Image.swift */; };
 		7412B8E0235C367100718727 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7412B8DF235C367100718727 /* Button.swift */; };
-		7412B8E2235C368A00718727 /* AddMySpotViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7412B8E1235C368A00718727 /* AddMySpotViewControllerExt.swift */; };
-		7412B8E5235C36D100718727 /* SpotModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7412B8E4235C36D100718727 /* SpotModal.swift */; };
+		7412B8E2235C368A00718727 /* AddSpotViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7412B8E1235C368A00718727 /* AddSpotViewExt.swift */; };
+		7412B8E5235C36D100718727 /* Spot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7412B8E4235C36D100718727 /* Spot.swift */; };
 		7412B8E7235C371800718727 /* MySpotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7412B8E6235C371800718727 /* MySpotCollectionViewCell.swift */; };
 		7412B8EA235C374600718727 /* LoginSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7412B8E9235C374600718727 /* LoginSignUpView.swift */; };
 		7412B8EF235D14A300718727 /* SpotServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7412B8EE235D14A300718727 /* SpotServices.swift */; };
 		7412B8F2235D497F00718727 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7412B8F1235D497F00718727 /* Constant.swift */; };
+		74453AB62429B7C000AC5A15 /* AddSpotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74453AB52429B7C000AC5A15 /* AddSpotView.swift */; };
+		749379FF2429992B00F95907 /* SpotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749379FE2429992B00F95907 /* SpotViewModel.swift */; };
 		74B821002388999E00156FDA /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B820FF2388999E00156FDA /* LocationManager.swift */; };
 		74B82102238C768000156FDA /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B82101238C768000156FDA /* ImagePickerManager.swift */; };
-		74B82105238CF16800156FDA /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B82104238CF16800156FDA /* Protocols.swift */; };
 		74B82107238CFD1000156FDA /* SpotMapViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B82106238CFD1000156FDA /* SpotMapViewControllerExt.swift */; };
 		74D6B83724031D5D003CD771 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74D6B83624031D5D003CD771 /* GoogleService-Info.plist */; };
 		74DD614A235D83C0004031A5 /* JSONDecoderExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DD6149235D83C0004031A5 /* JSONDecoderExt.swift */; };
 		74DD614C235EFA3C004031A5 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DD614B235EFA3C004031A5 /* UIViewController.swift */; };
 		74DD614E23613E79004031A5 /* SnappingLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DD614D23613E78004031A5 /* SnappingLayout.swift */; };
-		74DD615023621EDC004031A5 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DD614F23621EDC004031A5 /* LaunchScreenViewController.swift */; };
+		74FD956A242DDB9B00FB2D8B /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FD9569242DDB9B00FB2D8B /* SignInViewController.swift */; };
 		A800BC5933CCB25C26CAECB9 /* Pods_sk8JointsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E46C3DDAB8F2CBF9E8C9B22D /* Pods_sk8JointsTests.framework */; };
 		BBA985393CAF8CD0E5CE43E3 /* Pods_sk8Joints_sk8JointsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D9DADA1651BEFDF081D2933 /* Pods_sk8Joints_sk8JointsUITests.framework */; };
 		FDBA4544676E67A725C10F4D /* Pods_sk8Joints.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E63A57CBE56DDD76D34DFCAD /* Pods_sk8Joints.framework */; settings = {ATTRIBUTES = (Required, ); }; };
@@ -67,6 +69,8 @@
 		0D20360E0E2AF45D05380D53 /* Pods-sk8JointsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sk8JointsTests.debug.xcconfig"; path = "Target Support Files/Pods-sk8JointsTests/Pods-sk8JointsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		0D9DADA1651BEFDF081D2933 /* Pods_sk8Joints_sk8JointsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sk8Joints_sk8JointsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7400114E23FF62F400A21D42 /* SpotCellVerification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotCellVerification.swift; sourceTree = "<group>"; };
+		740FE1A02420EC9200F4708C /* MySpotViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySpotViewModel.swift; sourceTree = "<group>"; };
+		740FE1A22420F1AB00F4708C /* AddMySpotViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMySpotViewModel.swift; sourceTree = "<group>"; };
 		7412B894235C321800718727 /* sk8Joints.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sk8Joints.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7412B897235C321800718727 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7412B899235C321800718727 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,7 +83,7 @@
 		7412B8B5235C321C00718727 /* sk8JointsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sk8JointsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7412B8B9235C321C00718727 /* sk8JointsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sk8JointsUITests.swift; sourceTree = "<group>"; };
 		7412B8BB235C321C00718727 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7412B8C7235C338500718727 /* AddMySpotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMySpotViewController.swift; sourceTree = "<group>"; };
+		7412B8C7235C338500718727 /* AddSpotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSpotViewController.swift; sourceTree = "<group>"; };
 		7412B8C9235C33AF00718727 /* MySpotsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySpotsCollectionViewController.swift; sourceTree = "<group>"; };
 		7412B8CB235C33D600718727 /* SpotMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotMapViewController.swift; sourceTree = "<group>"; };
 		7412B8CF235C34B500718727 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
@@ -87,25 +91,25 @@
 		7412B8D3235C358400718727 /* UIImageExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExt.swift; sourceTree = "<group>"; };
 		7412B8D5235C35A900718727 /* Textfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Textfield.swift; sourceTree = "<group>"; };
 		7412B8D7235C35CD00718727 /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
-		7412B8D9235C35FE00718727 /* MySpotsCollectionViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySpotsCollectionViewControllerExt.swift; sourceTree = "<group>"; };
 		7412B8DB235C362A00718727 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		7412B8DD235C364800718727 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		7412B8DF235C367100718727 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
-		7412B8E1235C368A00718727 /* AddMySpotViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMySpotViewControllerExt.swift; sourceTree = "<group>"; };
-		7412B8E4235C36D100718727 /* SpotModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotModal.swift; sourceTree = "<group>"; };
+		7412B8E1235C368A00718727 /* AddSpotViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSpotViewExt.swift; sourceTree = "<group>"; };
+		7412B8E4235C36D100718727 /* Spot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spot.swift; sourceTree = "<group>"; };
 		7412B8E6235C371800718727 /* MySpotCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySpotCollectionViewCell.swift; sourceTree = "<group>"; };
 		7412B8E9235C374600718727 /* LoginSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSignUpView.swift; sourceTree = "<group>"; };
 		7412B8EE235D14A300718727 /* SpotServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotServices.swift; sourceTree = "<group>"; };
 		7412B8F1235D497F00718727 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		74453AB52429B7C000AC5A15 /* AddSpotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSpotView.swift; sourceTree = "<group>"; };
+		749379FE2429992B00F95907 /* SpotViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotViewModel.swift; sourceTree = "<group>"; };
 		74B820FF2388999E00156FDA /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		74B82101238C768000156FDA /* ImagePickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerManager.swift; sourceTree = "<group>"; };
-		74B82104238CF16800156FDA /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		74B82106238CFD1000156FDA /* SpotMapViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotMapViewControllerExt.swift; sourceTree = "<group>"; };
 		74D6B83624031D5D003CD771 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		74DD6149235D83C0004031A5 /* JSONDecoderExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoderExt.swift; sourceTree = "<group>"; };
 		74DD614B235EFA3C004031A5 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		74DD614D23613E78004031A5 /* SnappingLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnappingLayout.swift; sourceTree = "<group>"; };
-		74DD614F23621EDC004031A5 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
+		74FD9569242DDB9B00FB2D8B /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		926859C48692B2C032BF481E /* Pods-sk8Joints-sk8JointsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sk8Joints-sk8JointsUITests.debug.xcconfig"; path = "Target Support Files/Pods-sk8Joints-sk8JointsUITests/Pods-sk8Joints-sk8JointsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A8945DC041B1353C551F82CF /* Pods-sk8Joints.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sk8Joints.debug.xcconfig"; path = "Target Support Files/Pods-sk8Joints/Pods-sk8Joints.debug.xcconfig"; sourceTree = "<group>"; };
 		AC613786193EB020F3580CB5 /* Pods-sk8JointsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sk8JointsTests.release.xcconfig"; path = "Target Support Files/Pods-sk8JointsTests/Pods-sk8JointsTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -174,6 +178,16 @@
 			path = Enums;
 			sourceTree = "<group>";
 		};
+		740FE19F2420EB9000F4708C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				740FE1A02420EC9200F4708C /* MySpotViewModel.swift */,
+				740FE1A22420F1AB00F4708C /* AddMySpotViewModel.swift */,
+				749379FE2429992B00F95907 /* SpotViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		7412B88B235C321800718727 = {
 			isa = PBXGroup;
 			children = (
@@ -199,6 +213,7 @@
 		7412B896235C321800718727 /* sk8Joints */ = {
 			isa = PBXGroup;
 			children = (
+				740FE19F2420EB9000F4708C /* ViewModel */,
 				7400114D23FF608B00A21D42 /* Enums */,
 				7412B8ED235D148D00718727 /* Services */,
 				7412B8F0235D48AD00718727 /* Helpers */,
@@ -236,10 +251,10 @@
 		7412B8CD235C33ED00718727 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				74DD614F23621EDC004031A5 /* LaunchScreenViewController.swift */,
 				7412B8C9235C33AF00718727 /* MySpotsCollectionViewController.swift */,
-				7412B8C7235C338500718727 /* AddMySpotViewController.swift */,
+				7412B8C7235C338500718727 /* AddSpotViewController.swift */,
 				7412B8CB235C33D600718727 /* SpotMapViewController.swift */,
+				74FD9569242DDB9B00FB2D8B /* SignInViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -247,8 +262,7 @@
 		7412B8CE235C349E00718727 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				7412B8E1235C368A00718727 /* AddMySpotViewControllerExt.swift */,
-				7412B8D9235C35FE00718727 /* MySpotsCollectionViewControllerExt.swift */,
+				7412B8E1235C368A00718727 /* AddSpotViewExt.swift */,
 				74B82106238CFD1000156FDA /* SpotMapViewControllerExt.swift */,
 				74DD614D23613E78004031A5 /* SnappingLayout.swift */,
 				74DD614B235EFA3C004031A5 /* UIViewController.swift */,
@@ -268,7 +282,7 @@
 		7412B8E3235C36B500718727 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7412B8E4235C36D100718727 /* SpotModal.swift */,
+				7412B8E4235C36D100718727 /* Spot.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -278,6 +292,7 @@
 			children = (
 				7412B8E6235C371800718727 /* MySpotCollectionViewCell.swift */,
 				7412B8E9235C374600718727 /* LoginSignUpView.swift */,
+				74453AB52429B7C000AC5A15 /* AddSpotView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -305,7 +320,6 @@
 			children = (
 				7412B897235C321800718727 /* AppDelegate.swift */,
 				7412B899235C321800718727 /* SceneDelegate.swift */,
-				74B82104238CF16800156FDA /* Protocols.swift */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -322,6 +336,7 @@
 				7412B891235C321800718727 /* Frameworks */,
 				7412B892235C321800718727 /* Resources */,
 				5773D688F970CE4DC48234B5 /* [CP] Embed Pods Frameworks */,
+				EF4360A4C614733DBF753E00 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -360,6 +375,8 @@
 				7412B8B2235C321C00718727 /* Frameworks */,
 				7412B8B3235C321C00718727 /* Resources */,
 				49D53AE567F27D5B73009D77 /* [CP] Embed Pods Frameworks */,
+				74FD9566242D727300FB2D8B /* ShellScript */,
+				02C14F3A3910CD586B33672D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -442,6 +459,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		02C14F3A3910CD586B33672D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-sk8Joints-sk8JointsUITests/Pods-sk8Joints-sk8JointsUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-sk8Joints-sk8JointsUITests/Pods-sk8Joints-sk8JointsUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-sk8Joints-sk8JointsUITests/Pods-sk8Joints-sk8JointsUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		49D53AE567F27D5B73009D77 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -475,6 +509,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-sk8Joints/Pods-sk8Joints-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		74FD9566242D727300FB2D8B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n";
 		};
 		7C8F0092C9C2F5732EE22697 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -542,6 +593,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		EF4360A4C614733DBF753E00 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-sk8Joints/Pods-sk8Joints-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-sk8Joints/Pods-sk8Joints-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-sk8Joints/Pods-sk8Joints-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -554,30 +622,32 @@
 				7412B8E7235C371800718727 /* MySpotCollectionViewCell.swift in Sources */,
 				7412B8EA235C374600718727 /* LoginSignUpView.swift in Sources */,
 				74DD614A235D83C0004031A5 /* JSONDecoderExt.swift in Sources */,
-				7412B8C8235C338500718727 /* AddMySpotViewController.swift in Sources */,
+				74FD956A242DDB9B00FB2D8B /* SignInViewController.swift in Sources */,
+				7412B8C8235C338500718727 /* AddSpotViewController.swift in Sources */,
 				7412B8DC235C362A00718727 /* Label.swift in Sources */,
 				74DD614E23613E79004031A5 /* SnappingLayout.swift in Sources */,
 				7412B898235C321800718727 /* AppDelegate.swift in Sources */,
 				7412B8D0235C34B500718727 /* View.swift in Sources */,
 				7412B8F2235D497F00718727 /* Constant.swift in Sources */,
-				74DD615023621EDC004031A5 /* LaunchScreenViewController.swift in Sources */,
 				74B82102238C768000156FDA /* ImagePickerManager.swift in Sources */,
-				74B82105238CF16800156FDA /* Protocols.swift in Sources */,
 				7412B8D6235C35A900718727 /* Textfield.swift in Sources */,
 				7412B8DE235C364800718727 /* Image.swift in Sources */,
-				7412B8E2235C368A00718727 /* AddMySpotViewControllerExt.swift in Sources */,
+				7412B8E2235C368A00718727 /* AddSpotViewExt.swift in Sources */,
 				7412B8E0235C367100718727 /* Button.swift in Sources */,
+				740FE1A32420F1AB00F4708C /* AddMySpotViewModel.swift in Sources */,
 				7412B8CA235C33AF00718727 /* MySpotsCollectionViewController.swift in Sources */,
 				74DD614C235EFA3C004031A5 /* UIViewController.swift in Sources */,
+				740FE1A12420EC9200F4708C /* MySpotViewModel.swift in Sources */,
 				74B821002388999E00156FDA /* LocationManager.swift in Sources */,
-				7412B8DA235C35FE00718727 /* MySpotsCollectionViewControllerExt.swift in Sources */,
 				7412B8D8235C35CD00718727 /* Stack.swift in Sources */,
 				7412B8D4235C358400718727 /* UIImageExt.swift in Sources */,
 				7400114F23FF62F400A21D42 /* SpotCellVerification.swift in Sources */,
 				7412B8EF235D14A300718727 /* SpotServices.swift in Sources */,
-				7412B8E5235C36D100718727 /* SpotModal.swift in Sources */,
+				7412B8E5235C36D100718727 /* Spot.swift in Sources */,
 				7412B89A235C321800718727 /* SceneDelegate.swift in Sources */,
 				7412B8CC235C33D600718727 /* SpotMapViewController.swift in Sources */,
+				74453AB62429B7C000AC5A15 /* AddSpotView.swift in Sources */,
+				749379FF2429992B00F95907 /* SpotViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -674,7 +744,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -728,7 +798,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -787,7 +857,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2D25YZNJAC;
 				INFOPLIST_FILE = sk8JointsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -810,7 +880,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2D25YZNJAC;
 				INFOPLIST_FILE = sk8JointsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

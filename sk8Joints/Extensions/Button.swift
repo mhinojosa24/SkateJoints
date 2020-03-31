@@ -14,19 +14,23 @@ import UIKit
 // NOTE: this is a custom button class
 class Button: UIButton {
     
-    // NOTE: function allows to make a custom buttom
-    public static func initButton(title: String, titleSize: CGFloat = CGFloat(16), boldText: CGFloat = CGFloat(0), titleColor: UIColor, cornerRadius: CGFloat, backgroundColor: UIColor) -> Button {
-        let button = Button(type: .system)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        //guard let boldText = boldText else { return button}
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: boldText)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: titleSize)
-        button.setTitle(title, for: .normal)
-        button.backgroundColor = backgroundColor
-        button.setTitleColor(titleColor, for: .normal)
-        button.layer.cornerRadius = cornerRadius
-        
-        
-        return button
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    convenience init(title: String, fontSize: CGFloat = CGFloat(16), titleColor: UIColor, cornerRadius: CGFloat, backgroundColor: UIColor, target: Any?, action: Selector, event: UIControl.Event) {
+        self.init()
+        self.setTitle(title, for: .normal)
+        self.setTitleColor(titleColor, for: .normal)
+        self.titleLabel?.font = UIFont.systemFont(ofSize: fontSize)
+        self.backgroundColor = backgroundColor
+        self.layer.cornerRadius = cornerRadius
+        self.addTarget(target, action: action, for: event)
+        self.isEnabled = true
     }
 }

@@ -30,6 +30,8 @@ struct Constant {
     }
     
     
+    
+    // MARK: TODO: move database reference to service
     // NOTE: STATIC FUNCTIONS FOR THE DATABASE  
     static func databaseRef() -> DatabaseReference {
         let ref = Database.database().reference().child("Spots")

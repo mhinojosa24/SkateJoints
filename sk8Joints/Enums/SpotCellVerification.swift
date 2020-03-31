@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+// TODO: refactor this to capitalize
 enum verificationImage {
     case thumbsUp
     case security
