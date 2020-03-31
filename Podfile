@@ -7,6 +7,7 @@ target 'sk8Joints' do
 
   # Pods for sk8Joints
   pod 'IQKeyboardManagerSwift'
+  pod 'GoogleSignIn'
   pod 'Firebase/Analytics'
   pod 'Firebase/Database'
   pod 'Firebase/Storage'

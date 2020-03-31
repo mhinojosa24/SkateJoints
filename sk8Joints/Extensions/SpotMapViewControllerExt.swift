@@ -84,6 +84,7 @@ extension SpotMapViewController {
     
     func createMap() -> NavigationMapView {
         let map = NavigationMapView(frame: self.view.bounds)
+        map.styleURL = MGLStyle.streetsStyleURL
         map.automaticallyAdjustsContentInset = true
         return map
     }
@@ -102,9 +103,8 @@ extension SpotMapViewController {
     }
     
     func createCancelButton() -> Button {
-        let button = Button.initButton(title: "Cancel", titleSize: 19, boldText: 19, titleColor: #colorLiteral(red: 0.9294117647, green: 0.7058823529, blue: 0.1647058824, alpha: 1), cornerRadius: 0, backgroundColor: .clear)
+        let button = Button(title: "Cancel", titleColor: #colorLiteral(red: 0.9294117647, green: 0.7058823529, blue: 0.1647058824, alpha: 1), cornerRadius: 0, backgroundColor: .clear, target: self, action: #selector(didPressedCancelButton), event: .touchUpInside)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 19)
-        button.addTarget(self, action: #selector(didPressedCancelButton), for: .touchUpInside)
         return button
     }
 }

@@ -77,12 +77,14 @@ extension MySpotCollectionViewCell {
     }
     
     func createNavigationLogo() -> Button {
-        let button = Button.initButton(title: "", titleColor: .clear, cornerRadius: 0, backgroundColor: .clear)
+        let button = Button()
+        button.backgroundColor = .clear
         return button
     }
     
     func createNavigationButton() -> Button {
-        let button = Button.initButton(title: "", titleColor: .clear, cornerRadius: 0, backgroundColor: .clear)
+        let button = Button()
+        button.backgroundColor = .clear
         return button
     }
 }
@@ -101,7 +103,7 @@ extension MySpotCollectionViewCell {
     
     
     func layoutSpotImage() {
-        self.contentView.addSubview(spotImageView)
+        contentView.addSubview(spotImageView)
         spotImageView.clipsToBounds = true
         spotImageView.frame = self.bounds
         spotImageView.layer.cornerRadius = 25

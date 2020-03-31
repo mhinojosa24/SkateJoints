@@ -16,9 +16,9 @@ import UIKit
     NOTE: This extension will take care of creating views
  
 */
-extension AddSpotView {
+extension AddSpotViewController {
     func createImageTitleLabel() -> Label {
-        let label = Label.newLabel(title: "Add an image to this spot", textColor: .white, textSize: 19)
+        let label = Label.newLabel(title: "Add an image to this spot", textColor: .darkGray, textSize: 19)
         let labelHeight = label.optimalHeight
         label.frame = CGRect(x: label.frame.origin.x, y: label.frame.origin.y, width: label.frame.width, height: labelHeight)
         label.textAlignment = .left
@@ -44,7 +44,7 @@ extension AddSpotView {
     }
     
     func createSpotNickNameLabel() -> Label {
-        let label = Label.newLabel(title: "Give this spot a nickename", textColor: .white, textSize: 19)
+        let label = Label.newLabel(title: "Give this spot a nickename", textColor: .darkGray, textSize: 19)
         let labelHeight = label.optimalHeight
         label.frame = CGRect(x: label.frame.origin.x, y: label.frame.origin.y, width: label.frame.width, height: labelHeight)
         label.textAlignment = .left
@@ -54,7 +54,7 @@ extension AddSpotView {
     }
     
     func createNickNameTextfield() -> TextField {
-        let textField = TextField.initTextBox(.clear, .white, .darkGray, 0, .clear, "Nickname", 17)
+        let textField = TextField.initTextBox(.clear, .darkGray, .darkGray, 0, .clear, "Nickname", 17)
         return textField
     }
     
@@ -64,7 +64,7 @@ extension AddSpotView {
     }
     
     func createVerifySpotTitleLabel() -> Label {
-        let label = Label.newLabel(title: "Verify this spot", textColor: .white, textSize: 19)
+        let label = Label.newLabel(title: "Verify this spot", textColor: .darkGray, textSize: 19)
         label.font = UIFont.systemFont(ofSize: 18, weight: .init(5))
         return label
     }
@@ -116,7 +116,7 @@ extension AddSpotView {
 /*
   NOTE: This extension will take of layingout subViews
 */
-extension AddSpotView {
+extension AddSpotViewController {
     
     // NOTE: This is going to be the main caller function for layingout all subviews
     func layout() {

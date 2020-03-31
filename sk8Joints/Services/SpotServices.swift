@@ -12,8 +12,9 @@ import FirebaseStorage
 /*
     This class provides networking service
  */
-struct SpotServices {
+class SpotServices {
     
+    static let shared = SpotServices()
     
     static func fetchAllSpots(completion: @escaping ([Spot]?) -> Void) {
         

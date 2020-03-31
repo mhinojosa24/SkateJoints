@@ -11,6 +11,7 @@ import UIKit
 import Firebase
 import FirebaseStorage
 import Kingfisher
+import GoogleSignIn
 
 
 
@@ -35,12 +36,14 @@ final class MySpotsCollectionViewController: UICollectionViewController, UpdateS
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        updateCollectionView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateCollectionView()
+        
     }
+    
     
     // NOTE: updates the collection view with data
     private func updateCollectionView() {
@@ -52,8 +55,8 @@ final class MySpotsCollectionViewController: UICollectionViewController, UpdateS
     }
     
     private func setupViews() {
-        self.collectionView.register(MySpotCollectionViewCell.self, forCellWithReuseIdentifier: MySpotCollectionViewCell.cellId)
-        collectionView.backgroundColor = #colorLiteral(red: 0.1019607843, green: 0.1803921569, blue: 0.2745098039, alpha: 1)
+        self.collectionView.register(MySpotCollectionViewCell.self, forCellWithReuseIdentifier: MySpotCollectionViewCell.description())
+        collectionView.backgroundColor = .white
         setUpNavigationUI()
     }
     
@@ -81,6 +84,12 @@ final class MySpotsCollectionViewController: UICollectionViewController, UpdateS
         navigationController?.present(nav, animated: true, completion: nil)
     }
     
+    @objc func didPressedSignOut() {
+        print("pressed sign out button")
+        GIDSignIn.sharedInstance()?.signOut()
+        dismiss(animated: true, completion: nil)
+    }
+    
     private func setUpNavigationUI() {
         navigationController?.navigationBar.topItem?.title = "My Spots"
         let button =  UIButton(type: .custom)
@@ -89,6 +98,7 @@ final class MySpotsCollectionViewController: UICollectionViewController, UpdateS
         button.addTarget(self, action: #selector(didPressAddSpot), for: .touchUpInside)
         button.frame = CGRect(x:0, y:0, width: 10, height: 10)
         let barButton = UIBarButtonItem(customView: button)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(didPressedSignOut))
         navigationItem.rightBarButtonItem = barButton
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.1568627451, green: 0.4, blue: 0.5254901961, alpha: 1)
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 22)!]
@@ -171,7 +181,7 @@ extension MySpotsCollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MySpotCollectionViewCell.cellId, for: indexPath) as! MySpotCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MySpotCollectionViewCell.description(), for: indexPath) as! MySpotCollectionViewCell
         configureCell(cell: cell, cellForItemAt: indexPath)
         return cell
     }

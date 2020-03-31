@@ -15,26 +15,34 @@ import Mapbox
 import MapboxGeocoder
 import MapboxCoreNavigation
 
+
 protocol UpdateSpotsDelegate {
     func shouldUpdateSpots(isEnableUpdate: Bool)
 }
 
-final class AddSpotViewController: UIViewController, LocationUpdateDelegate {
+class AddSpotViewController: UIViewController, LocationUpdateDelegate {
     
     // NOTE: Explicitly being created when constraints are added
-    lazy var addSpotView: AddSpotView = {
-        let view = AddSpotView()
-        return view
-    }()
-    private var viewModel: AddMySpotViewModel!
-    private var locationManager: LocationManager!
-    private var delegate: UpdateSpotsDelegate!
+    lazy var imageTitleLabel: Label = self.createImageTitleLabel()
+    lazy var spotImageContainer: View = self.createSpotImageContainer()
+    lazy var spotImage: ImageView = self.createSpotImage()
+    lazy var spotNickNameLabel: Label = self.createSpotNickNameLabel()
+    lazy var nickNameTextfield: TextField = self.createNickNameTextfield()
+    lazy var textFieldBottomLine: View = self.createTextFieldBottomLine()
+    lazy var verifySpotTitleLabel: Label = self.createVerifySpotTitleLabel()
+    lazy var secruityImage: ImageView = self.createSecruityImage()
+    lazy var theifImage: ImageView = self.createTheifImage()
+    lazy var constructionImage = self.createConstructionImage()
+    lazy var positiveHandImage: ImageView = self.createPositiveHandImage()
+    lazy var stackView: Stack = self.createStackView()
+    var locationManager: LocationManager!
+    var delegate: UpdateSpotsDelegate!
     var imageToSave: UIImage!
     var verifySpotTag: Int? = 0
     var address: String?
     var spotLat: Double?
     var spotLong: Double?
-    
+    private var viewModel: AddMySpotViewModel!
     
     init(viewModel: AddMySpotViewModel) {
         self.viewModel = viewModel
@@ -45,7 +53,9 @@ final class AddSpotViewController: UIViewController, LocationUpdateDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         setUpNavigationUI()
+        layout()
         locationManager = LocationManager()
         locationManager.delegate = self
         locationManager.checkLocationServices()
@@ -83,7 +93,7 @@ final class AddSpotViewController: UIViewController, LocationUpdateDelegate {
         }
         
         guard
-            let spotName = addSpotView.nickNameTextfield.text,
+            let spotName = self.nickNameTextfield.text,
             let spotImageName = viewModel.getImageURL(image: image)?.absoluteString,
             let spotTag = self.verifySpotTag,
             let lat = self.spotLat,
@@ -137,10 +147,6 @@ final class AddSpotViewController: UIViewController, LocationUpdateDelegate {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 19)!]
     }
     
-    private func configureAddSpotView() {
-        
-    }
-    
     @objc func didPressedVerifyImage(sender: UITapGestureRecognizer) {
         verifySpotTag = sender.view!.tag
     }
@@ -148,12 +154,12 @@ final class AddSpotViewController: UIViewController, LocationUpdateDelegate {
     @objc func didPressedAddImage() {
         ImagePickerManager().pickImage(self) { (image) in
             if let image = image {
-                self.addSpotView.spotImage.isHidden = true
+                self.spotImage.isHidden = true
                 self.imageToSave = image
-                self.addSpotView.spotImageContainer.backgroundColor = UIColor(patternImage: image)
+                self.spotImageContainer.backgroundColor = UIColor(patternImage: image)
             } else {
-                self.addSpotView.spotImage.isHidden = false
-                self.addSpotView.spotImageContainer.backgroundColor = .darkGray
+                self.spotImage.isHidden = false
+                self.spotImageContainer.backgroundColor = .darkGray
             }
         }
     }
