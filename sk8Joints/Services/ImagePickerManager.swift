@@ -16,7 +16,7 @@ class ImagePickerManager: NSObject, UIImagePickerControllerDelegate, UINavigatio
     
     let imagePickerController = UIImagePickerController()
     let alert = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
-    var pickerImageCallback: ((UIImage?) -> ())?
+    var pickerImageCallback: ((UIImage?) -> Void)?
     var viewController: UIViewController?
     
     // MARK: - Init
@@ -28,7 +28,7 @@ class ImagePickerManager: NSObject, UIImagePickerControllerDelegate, UINavigatio
     // MARK: - Methods & Delegate Methods
     
     // NOTE:
-    func pickImage(_ viewController: UIViewController, _ completion: @escaping (UIImage?) -> ()) {
+    func pickImage(_ viewController: UIViewController, _ completion: @escaping (UIImage?) -> Void) {
         self.pickerImageCallback = completion
         self.viewController = viewController
         showChooseSourceTypeAlertController()
