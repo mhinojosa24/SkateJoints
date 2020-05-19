@@ -11,19 +11,19 @@ import UIKit
 import CoreLocation
 
 
-enum LocationError {
-    case denied
-    case restricted
-}
+//enum LocationError {
+//    case denied
+//    case restricted
+//}
+//
+//protocol LocationUpdateDelegate {
+//    func locationDidUpdate(location: CLLocation, address: String)
+//    func locationError(error: LocationError)
+//}
 
-protocol LocationUpdateDelegate {
-    func locationDidUpdate(location: CLLocation, address: String)
-    func locationError(error: LocationError)
-}
-
-class LocationManager: NSObject, CLLocationManagerDelegate {
+class LocationViewModel: NSObject, CLLocationManagerDelegate {
     
-    static let sharedManager = LocationManager()
+    static let sharedManager = LocationViewModel()
     private var locationManager = CLLocationManager()
     var delegate: LocationUpdateDelegate!
     
@@ -112,7 +112,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         let location = locations.last! as CLLocation
         
         // handles getting users address
-        CLGeocoder().reverseGeocodeLocation(manager.location!, completionHandler: {(placemarks, error) -> Void in
+        CLGeocoder().reverseGeocodeLocation(manager.location!, completionHandler: { (placemarks, error) -> Void in
              
             if (error != nil) {
                 print("Reverse geocoder failed with error" + (error?.localizedDescription)!)
@@ -120,8 +120,6 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
             }
             
             guard let placemark = placemarks?.first else {
-//                let alert = Constant.setupAlert(alertTitle: "Geocoder", alertMessage: "Problem with the data received from geocoder", alertStyle: .alert, actionTitle: "OK", actionStyle: .cancel)
-                
                 print("Problem with the data received from geocoder")
                 return
             }

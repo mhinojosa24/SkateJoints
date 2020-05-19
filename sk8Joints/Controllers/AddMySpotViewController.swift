@@ -35,7 +35,7 @@ class AddSpotViewController: UIViewController, LocationUpdateDelegate {
     lazy var constructionImage = self.createConstructionImage()
     lazy var positiveHandImage: ImageView = self.createPositiveHandImage()
     lazy var stackView: Stack = self.createStackView()
-    var locationManager: LocationManager!
+    var locationManager: LocationViewModel!
     var delegate: UpdateSpotsDelegate!
     var imageToSave: UIImage!
     var verifySpotTag: Int? = 0
@@ -56,12 +56,12 @@ class AddSpotViewController: UIViewController, LocationUpdateDelegate {
         view.backgroundColor = .white
         setUpNavigationUI()
         layout()
-        locationManager = LocationManager()
-        locationManager.delegate = self
-        locationManager.checkLocationServices()
+        viewModel.delegate = self
+        viewModel.checkLocationServices()
     }
     
     func locationDidUpdate(location: CLLocation, address: String) {
+        print(location.altitude)
         self.spotLat = location.coordinate.latitude
         self.spotLong = location.coordinate.longitude
         self.address = address
@@ -100,29 +100,25 @@ class AddSpotViewController: UIViewController, LocationUpdateDelegate {
             let long = self.spotLong,
             let address = self.address
             else { return }
-        let isValid = validateSpot(spotName, spotImageName, spotTag)
-        
-        if isValid {
-            let newSpot = Spot(id: spotIdentifier, spotName: spotName, spotImage: spotImageName, address: address, spotLat: lat, spotLong: long, verifySpot: spotTag)
-            viewModel.saveSpot(spot: newSpot)
-            delegate.shouldUpdateSpots(isEnableUpdate: true)
-            locationManager.stopUpdatingLocation()
-            dismiss(animated: true, completion: nil)
+        viewModel.validateSpot(spotName, spotImageName, spotTag) { (isValid) in
+            if isValid {
+                let newSpot = Spot(id: spotIdentifier, spotName: spotName, spotImage: spotImageName, address: address, spotLat: lat, spotLong: long, verifySpot: spotTag)
+                self.viewModel.saveSpot(spot: newSpot) {
+                    self.delegate.shouldUpdateSpots(isEnableUpdate: true)
+                    self.viewModel.stopUpdatingLocation()
+                    self.dismiss(animated: true, completion: nil)
+                }
+            } else {
+                self.showAlertAdvisor()
+                self.navigationItem.rightBarButtonItem?.isEnabled = true
+            }
         }
     }
     
-    private func validateSpot(_ spotName: String, _ imageName: String, _ tag: Int) -> Bool {
-        if spotName.count == 0 || imageName.count == 0 || tag == 0 {
-            showAlertAdvisor()
-            navigationItem.rightBarButtonItem?.isEnabled = true
-            return false
-        } else {
-            return true
-        }
-    }
+    
     
     private func showAlertAdvisor() {
-       let alert = Constant.setupAlert(alertTitle: "Detected Empty Field", alertMessage: "Please enter all fields for a valid new spot", alertStyle: .alert, actionTitle: "OK", actionStyle: .cancel)
+        let alert = Constant.setupAlert(alertTitle: "Detected Empty Field", alertMessage: "Please enter all fields for a valid new spot", alertStyle: .alert, actionTitle: "OK", actionStyle: .cancel)
         present(alert, animated: true, completion: nil)
     }
     
@@ -164,12 +160,11 @@ class AddSpotViewController: UIViewController, LocationUpdateDelegate {
         }
     }
     
-    @objc private func didPressCancelButton() {
+    @objc func didPressCancelButton() {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @objc private func didPressSaveButton() {
+    @objc func didPressSaveButton() {
         saveNewSpot()
     }
 }
-

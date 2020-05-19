@@ -78,7 +78,7 @@ final class MySpotsCollectionViewController: UICollectionViewController, UpdateS
     }
     
     @objc private func didPressAddSpot() {
-        let addMySpotVC = AddSpotViewController(viewModel: AddMySpotViewModel())
+        let addMySpotVC = AddSpotViewController(viewModel: AddMySpotViewModel.sharedModel)
         addMySpotVC.delegate = self
         let nav = UINavigationController(rootViewController: addMySpotVC)
         navigationController?.present(nav, animated: true, completion: nil)
@@ -90,6 +90,7 @@ final class MySpotsCollectionViewController: UICollectionViewController, UpdateS
         dismiss(animated: true, completion: nil)
     }
     
+    // TODO: View model should take care of this
     private func setUpNavigationUI() {
         navigationController?.navigationBar.topItem?.title = "My Spots"
         let button =  UIButton(type: .custom)
@@ -128,48 +129,6 @@ extension MySpotsCollectionViewController: UICollectionViewDelegateFlowLayout {
 
 // MARK: - DataSource & Delegate Methods
 extension MySpotsCollectionViewController {
-
-    private func configureCell(cell: MySpotCollectionViewCell, cellForItemAt indexPath: IndexPath) {
-        let spot = viewModel.spotArr[indexPath.row]
-        let imageURL = URL(string: spot.spotImage!)
-        cell.initiateNavigationButton.isHidden = true
-        cell.spotImageView.contentMode = .scaleAspectFill
-        cell.spotImageView.kf.indicatorType = .activity
-        DispatchQueue.main.async {
-            cell.spotImageView.kf.setImage(with: imageURL, placeholder: nil, options: [.transition(.fade(0.5)), .processor(BlurImageProcessor(blurRadius: 1.0))], progressBlock: nil) { (results) in
-                switch results {
-                case .success:
-                    cell.spotTitle.text = spot.spotName
-                    cell.spotAddressLabel.text = spot.address
-                    cell.navigationLogo.setBackgroundImage(UIImage(named: "navigate"), for: .normal)
-                    switch spot.verifySpot! {
-                    case 1:
-                        cell.verifyLogoIndicator.image = verificationImage.security.imageToCell
-                        break
-                    case 2:
-                        cell.verifyLogoIndicator.image = verificationImage.theif.imageToCell
-                        break
-                    case 3:
-                        cell.verifyLogoIndicator.image = verificationImage.construction.imageToCell
-                        break
-                    case 4:
-                        cell.verifyLogoIndicator.image = verificationImage.thumbsUp.imageToCell
-                        break
-                    default:
-                        let image = UIImage(named: "image")!
-                        cell.verifyLogoIndicator.image = image
-                    }
-                    
-                    
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
-            }
-        }
-        
-        cell.navigationLogo.tag = indexPath.row
-        cell.navigationLogo.addTarget(self, action: #selector(didPressedNavigateBtn), for: .touchUpInside)
-    }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.spotArr.count
@@ -182,7 +141,10 @@ extension MySpotsCollectionViewController {
     override func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MySpotCollectionViewCell.description(), for: indexPath) as! MySpotCollectionViewCell
-        configureCell(cell: cell, cellForItemAt: indexPath)
+        let spot = viewModel.spotArr[indexPath.row]
+        cell.configureCell(spot: spot)
+        cell.navigationLogo.tag = indexPath.row
+        cell.navigationLogo.addTarget(self, action: #selector(didPressedNavigateBtn), for: .touchUpInside)
         return cell
     }
 }

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 import Firebase
-
+import Kingfisher
 
 final class MySpotCollectionViewCell: UICollectionViewCell {
     
@@ -43,7 +43,46 @@ final class MySpotCollectionViewCell: UICollectionViewCell {
     func setUpCellUI() {
         self.addCustomShadow(shadowColor: #colorLiteral(red: 0.1298420429, green: 0.1298461258, blue: 0.1298439503, alpha: 1), shadowOpacity: 3.0, shadowOffsetWidth: 0.0, shadowOffsetHeight: 3.0)
         layer.cornerRadius = 25
-    }    
+    }
+    
+    func configureCell(spot: Spot) {
+        
+        let imageURL = URL(string: spot.spotImage!)
+        initiateNavigationButton.isHidden = true
+        spotImageView.contentMode = .scaleAspectFill
+        spotImageView.kf.indicatorType = .activity
+        DispatchQueue.main.async {
+            self.spotImageView.kf.setImage(with: imageURL, placeholder: nil, options: [.transition(.fade(0.5)), .processor(BlurImageProcessor(blurRadius: 1.0))], progressBlock: nil) { (results) in
+                switch results {
+                case .success:
+                    self.spotTitle.text = spot.spotName
+                    self.spotAddressLabel.text = spot.address
+                    self.navigationLogo.setBackgroundImage(UIImage(named: "navigate"), for: .normal)
+                    switch spot.verifySpot! {
+                    case 1:
+                        self.verifyLogoIndicator.image = verificationImage.security.imageToCell
+                        break
+                    case 2:
+                        self.verifyLogoIndicator.image = verificationImage.theif.imageToCell
+                        break
+                    case 3:
+                        self.verifyLogoIndicator.image = verificationImage.construction.imageToCell
+                        break
+                    case 4:
+                        self.verifyLogoIndicator.image = verificationImage.thumbsUp.imageToCell
+                        break
+                    default:
+                        let image = UIImage(named: "image")!
+                        self.verifyLogoIndicator.image = image
+                    }
+                    
+                    
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
 }
 
 
