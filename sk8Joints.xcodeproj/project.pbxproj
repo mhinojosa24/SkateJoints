@@ -34,8 +34,6 @@
 		7412B8EF235D14A300718727 /* SpotServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7412B8EE235D14A300718727 /* SpotServices.swift */; };
 		7412B8F2235D497F00718727 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7412B8F1235D497F00718727 /* Constant.swift */; };
 		74453AB62429B7C000AC5A15 /* AddSpotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74453AB52429B7C000AC5A15 /* AddSpotView.swift */; };
-		749379FF2429992B00F95907 /* SpotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749379FE2429992B00F95907 /* SpotViewModel.swift */; };
-		74B821002388999E00156FDA /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B820FF2388999E00156FDA /* LocationViewModel.swift */; };
 		74B82102238C768000156FDA /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B82101238C768000156FDA /* ImagePickerManager.swift */; };
 		74B82107238CFD1000156FDA /* SpotMapViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B82106238CFD1000156FDA /* SpotMapViewControllerExt.swift */; };
 		74D6B83724031D5D003CD771 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74D6B83624031D5D003CD771 /* GoogleService-Info.plist */; };
@@ -97,8 +95,6 @@
 		7412B8EE235D14A300718727 /* SpotServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotServices.swift; sourceTree = "<group>"; };
 		7412B8F1235D497F00718727 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		74453AB52429B7C000AC5A15 /* AddSpotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSpotView.swift; sourceTree = "<group>"; };
-		749379FE2429992B00F95907 /* SpotViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotViewModel.swift; sourceTree = "<group>"; };
-		74B820FF2388999E00156FDA /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
 		74B82101238C768000156FDA /* ImagePickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerManager.swift; sourceTree = "<group>"; };
 		74B82106238CFD1000156FDA /* SpotMapViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotMapViewControllerExt.swift; sourceTree = "<group>"; };
 		74D6B83624031D5D003CD771 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -164,9 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				740FE1A02420EC9200F4708C /* MySpotViewModel.swift */,
-				74B820FF2388999E00156FDA /* LocationViewModel.swift */,
 				740FE1A22420F1AB00F4708C /* AddMySpotViewModel.swift */,
-				749379FE2429992B00F95907 /* SpotViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -620,7 +614,6 @@
 				7412B8CA235C33AF00718727 /* MySpotsCollectionViewController.swift in Sources */,
 				74DD614C235EFA3C004031A5 /* UIViewController.swift in Sources */,
 				740FE1A12420EC9200F4708C /* MySpotViewModel.swift in Sources */,
-				74B821002388999E00156FDA /* LocationViewModel.swift in Sources */,
 				7412B8D8235C35CD00718727 /* Stack.swift in Sources */,
 				7412B8D4235C358400718727 /* UIImageExt.swift in Sources */,
 				7400114F23FF62F400A21D42 /* SpotCellVerification.swift in Sources */,
@@ -629,7 +622,6 @@
 				7412B89A235C321800718727 /* SceneDelegate.swift in Sources */,
 				7412B8CC235C33D600718727 /* SpotMapViewController.swift in Sources */,
 				74453AB62429B7C000AC5A15 /* AddSpotView.swift in Sources */,
-				749379FF2429992B00F95907 /* SpotViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
